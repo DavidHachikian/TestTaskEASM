@@ -52,6 +52,24 @@ public class TestBase {
         driver.findElement(By.id("passwordValidation")).sendKeys(userData.password2());
     }
 
+    protected void submitButtonEnabled() {
+        WebElement submitButton = driver.findElement(By.id("submitLogin"));
+        if(submitButton.isEnabled()) {
+            System.out.println("Submit button is in enable state");
+        } else {
+            System.out.println("Submit button is in disable state");
+        }
+    }
+
+    protected void selectCheckbox() {
+        WebElement checkBox = driver.findElement(By.xpath("//form[@id='inputForAuth']/div[3]/label"));
+        if(checkBox.isSelected()) {
+            System.out.println("Checkbox is selected. Return: " +checkBox.isSelected());
+        } else {
+            System.out.println("Checkbox is not selected. Return: " +checkBox.isSelected());
+        }
+    }
+
     @AfterClass(alwaysRun = true)
     public void tearDown() throws Exception {
         driver.quit();
