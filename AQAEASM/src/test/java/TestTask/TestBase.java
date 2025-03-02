@@ -1,5 +1,6 @@
 package TestTask;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
@@ -27,6 +28,7 @@ public class TestBase {
         driver.get("http://tl.af-ctf.ru/#inputForAuth");
     }
 
+    @Step (value = "Проверить отображение текста ошибки")
     protected void passwordVisibility() {
         WebElement errText= driver.findElement(By.xpath("//*[contains(text(), 'Ваши пароли не совпадают')]"));
         if (errText.isDisplayed()) {
@@ -36,14 +38,17 @@ public class TestBase {
         }
     }
 
+    @Step (value = "Нажать кнопку 'Получить'")
     protected void submitUserForm() {
         driver.findElement(By.id("submitLogin")).click();
     }
 
+    @Step (value = "Нажать на чекбокс 'Принимаю условия обработки...'")
     protected void clickCheckbox() {
         driver.findElement(By.xpath("//form[@id='inputForAuth']/div[3]/label")).click();
     }
 
+    @Step (value = "Заполнить поля ввода")
     protected void fillUserForm(UserData userData) {
         driver.findElement(By.id("userName")).sendKeys(userData.name());
         driver.findElement(By.id("email")).sendKeys(userData.email());
@@ -52,6 +57,7 @@ public class TestBase {
         driver.findElement(By.id("passwordValidation")).sendKeys(userData.password2());
     }
 
+    @Step (value = "Проверить доступность кнопки 'Получить'")
     protected void submitButtonEnabled() {
         WebElement submitButton = driver.findElement(By.id("submitLogin"));
         if(submitButton.isEnabled()) {
@@ -61,6 +67,7 @@ public class TestBase {
         }
     }
 
+    @Step (value = "Проверить выбран ли чекбокс 'Принимаю условия обработки...'")
     protected void selectCheckbox() {
         WebElement checkBox = driver.findElement(By.xpath("//form[@id='inputForAuth']/div[3]/label"));
         if(checkBox.isSelected()) {

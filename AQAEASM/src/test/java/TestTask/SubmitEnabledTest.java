@@ -1,14 +1,14 @@
 package TestTask;
 
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.firefox.FirefoxDriver;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.*;
-import static org.testng.Assert.*;
-import org.openqa.selenium.*;
 
 public class SubmitEnabledTest extends TestBase{
 
+    @Description(value = "Негативный тест для проверки доступности кнопки 'Получить'")
+    @Severity(value = SeverityLevel.NORMAL)
     @Test
     public void testSubmitEnabled() throws Exception {
         fillUserForm(new UserData("Пушкин Александр Сергеевич", "pushkin@gmail.com", "89355553535", "12345678", "12345678"));
